@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autonomia"
+version = "0.0.1"
+description = "Symulator robota magazynowego z kamerą"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["autonomia*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
