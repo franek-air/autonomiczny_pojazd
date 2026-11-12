@@ -52,3 +52,7 @@ def test_tylko_do_odczytu():
     s = Sterowanie()
     with pytest.raises(AttributeError):
         s.gaz = 0.5
+
+def test_repr_pokazuje_wartosci_sygnalow():
+    s = Sterowanie(gaz=0.5)
+    assert repr(s) == "Sterowanie(gaz=0.5, hamulec=0.0, omega=0.0)"
