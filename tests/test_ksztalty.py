@@ -42,3 +42,8 @@ def test_wysokosc_zero_zglasza_blad_scenariusza():
 def test_wysokosc_ujemna_zglasza_blad_scenariusza():
     with pytest.raises(BladScenariusza):
         Prostokat(x=0, y=0, szerokosc=2, wysokosc=-2)
+
+
+def test_punkt_blisko_dolnej_krawedzi_nalezy_do_prostokata():
+    p = Prostokat(x=10, y=5, szerokosc=3, wysokosc=12)
+    assert p.zawiera_punkt(11.5, 16)
