@@ -8,7 +8,7 @@ class Prostokat:
     a y w dół. Wymiary podajemy w metrach. Punkt (x,y) to lewy górny róg
     prostokąta.
     
-    Punkt leżący na krawędzi uznajemt za należący do prostokąta. Szerokość
+    Punkt leżący na krawędzi uznajemy za należący do prostokąta. Szerokość
     i wysokość muszą być dodatnie, inaczej konstruktor zgłasza
     BladScenariusza. Obiekt jest niezmienny."""
 
@@ -42,3 +42,44 @@ class Prostokat:
 
     def zawiera_punkt(self, px, py):
         return self.x <= px <= self.x + self.szerokosc and self.y <= py <= self.y + self.wysokosc   
+
+
+class Okrag:
+    """Okrągły blok, np. słup w hali.
+
+    Układ współrzędnych jest taki sam jak w Prostokat: (0, 0) to lewy górny
+    róg świata, x rośnie w prawo, a y w dół. Wymiary podajemy w metrach.
+    Punkt (x, y) to środek okręgu.
+
+    Punkt leżący na brzegu uznajemy za należący do okręgu. Promień musi być
+    dodatni, inaczej konstruktor zgłasza BladScenariusza. Obiekt jest
+    niezmienny.
+    """
+
+    def __init__(self, x, y, promien):
+        if not promien > 0:
+            raise BladScenariusza(f"promien musi byc dodatni: {promien}")
+
+        self._x = x
+        self._y = y
+        self._promien = promien
+
+
+    @property
+    def x(self):
+        return self._x
+
+    @property
+    def y(self):
+        return self._y
+
+    @property
+    def promien(self):
+        return self._promien
+
+
+    def zawiera_punkt(self, px, py):
+        dx = px - self.x
+        dy = py - self.y
+
+        return dx**2 + dy**2 <= self.promien**2
