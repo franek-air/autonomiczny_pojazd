@@ -11,3 +11,6 @@ class BladAutonomii(Exception):
 
 class BladSterowania(BladAutonomii):
     """Niepoprawne sygnały sterujące (np. gaz i hamulec naraz)."""
+
+class BladScenariusza(BladAutonomii):
+    """Niepoprawne dane scenariusza (np. ujemny rozmiar bloku)"""
