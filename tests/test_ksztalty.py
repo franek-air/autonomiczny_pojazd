@@ -1,7 +1,7 @@
 import pytest
 
 from autonomia.domena.bledy import BladScenariusza
-from autonomia.domena.ksztalty import Prostokat, Okrag
+from autonomia.domena.ksztalty import Prostokat, Okrag, Ksztalt
 
 
 def test_punkt_w_srodku_nalezy_do_prostokata():
@@ -77,3 +77,23 @@ def test_promien_ujemny_zglasza_blad_scenariusza():
 def test_punkt_w_rogu_kwadratu_opisanego_na_okregu_ale_poza_okregiem_nie_nalezy():
     o = Okrag(x=1, y=1, promien=2)
     assert not o.zawiera_punkt(3, 3)
+
+
+def test_nie_mozna_utworzyc_obiektu_klasy_abstrakcyjnej():
+    with pytest.raises(TypeError):
+        Ksztalt()
+
+
+def test_prostokat_i_okrag_to_ksztalty():
+    p = Prostokat(x=1, y=1, szerokosc=3, wysokosc=4)
+    o = Okrag(x=3, y=4, promien=7)
+    assert isinstance(p, Ksztalt)
+    assert isinstance(o, Ksztalt)
+
+
+def test_polimorfizm_punkt_w_wielu_ksztaltach():
+    p = Prostokat(x=1, y=1, szerokosc=4, wysokosc=4)
+    o = Okrag(x=0, y=0, promien=4)
+    ksztalty = [p, o]
+    for k in ksztalty:
+        assert k.zawiera_punkt(2, 2)
