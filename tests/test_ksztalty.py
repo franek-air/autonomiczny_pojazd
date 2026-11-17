@@ -97,3 +97,13 @@ def test_polimorfizm_punkt_w_wielu_ksztaltach():
     ksztalty = [p, o]
     for k in ksztalty:
         assert k.zawiera_punkt(2, 2)
+
+
+def test_prostokat_wyznacza_obwiednie():
+    p = Prostokat(x=10, y=5, szerokosc=3, wysokosc=12)
+    assert p.obwiednia() == (10, 5, 13, 17)
+
+
+def test_okrag_wyznacza_obwiednie():
+    o = Okrag(x=15, y=20, promien=1.5)
+    assert o.obwiednia() == (13.5, 18.5, 16.5, 21.5)
