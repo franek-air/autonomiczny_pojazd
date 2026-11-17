@@ -1,8 +1,23 @@
 """Kształty szarych bloków w świecie robota."""
 from autonomia.domena.bledy import BladScenariusza
+from abc import ABC, abstractmethod
 
 
-class Prostokat:
+class Ksztalt(ABC):
+    """Wspólny typ bazowy wszystkich kształtów szarych bloków w świecie.
+
+    Klasa abstrakcyjna: nie tworzy się jej obiektów, tylko obiekty klas
+    pochodnych (Prostokat, Okrag). Każdy kształt musi umieć odpowiedzieć,
+    czy dany punkt w nim leży. Dzięki temu planista i siatka zajętości
+    korzystają tylko z typu Ksztalt i nie muszą wiedzieć, z jakim konkretnie
+    kształtem mają do czynienia.
+    """
+
+    @abstractmethod
+    def zawiera_punkt(self, px, py):
+        """Zwraca True, gdy punkt leży w kształcie (łącznie z brzegiem)."""
+
+class Prostokat(Ksztalt):
     """Prostokątny blok o bokach równoległych do osi, np. regał lub ściana.
     Układ współrzędnych: (0, 0) to lewy górny róg świata, x rośnie w prawo,
     a y w dół. Wymiary podajemy w metrach. Punkt (x,y) to lewy górny róg
@@ -44,7 +59,7 @@ class Prostokat:
         return self.x <= px <= self.x + self.szerokosc and self.y <= py <= self.y + self.wysokosc   
 
 
-class Okrag:
+class Okrag(Ksztalt):
     """Okrągły blok, np. słup w hali.
 
     Układ współrzędnych jest taki sam jak w Prostokat: (0, 0) to lewy górny
