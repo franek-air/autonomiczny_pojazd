@@ -1,0 +1,17 @@
+# Przykładowy scenariusz. Układ współrzędnych: (0, 0) to lewy górny róg,
+# x rośnie w prawo, y w dół. Jednostki: metry.
+nazwa: magazyn_01
+
+swiat:
+  szerokosc: 40
+  wysokosc: 25
+
+szare_bloki:          # robot zna je z góry
+  - {typ: prostokat, x: 10, y: 5,  szerokosc: 3, wysokosc: 12}   # regał
+  - {typ: prostokat, x: 20, y: 8,  szerokosc: 3, wysokosc: 12}   # regał
+  - {typ: prostokat, x: 30, y: 0,  szerokosc: 2, wysokosc: 15}   # ściana
+  - {typ: okrag,     x: 15, y: 20, promien: 1.5}                 # słup
+
+robot:
+  start: {x: 2,  y: 12}
+  cel:   {x: 37, y: 20}

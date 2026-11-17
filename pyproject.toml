@@ -7,7 +7,7 @@ name = "autonomia"
 version = "0.0.1"
 description = "Symulator robota magazynowego z kamerą"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = ["pyyaml>=6"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
