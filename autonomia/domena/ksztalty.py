@@ -17,6 +17,13 @@ class Ksztalt(ABC):
     def zawiera_punkt(self, px, py):
         """Zwraca True, gdy punkt leży w kształcie (łącznie z brzegiem)."""
 
+
+    @abstractmethod
+    def obwiednia(self):
+        """Zwraca (x_min, y_min, x_max, y_max): najmniejszy prostokąt
+        równoległy do osi, który zawiera cały kształt."""
+
+
 class Prostokat(Ksztalt):
     """Prostokątny blok o bokach równoległych do osi, np. regał lub ściana.
     Układ współrzędnych: (0, 0) to lewy górny róg świata, x rośnie w prawo,
@@ -59,6 +66,9 @@ class Prostokat(Ksztalt):
         return self.x <= px <= self.x + self.szerokosc and self.y <= py <= self.y + self.wysokosc   
 
 
+    def obwiednia(self):
+        return (self.x, self.y, self.x + self.szerokosc, self.y + self.wysokosc)
+
 class Okrag(Ksztalt):
     """Okrągły blok, np. słup w hali.
 
@@ -98,3 +108,7 @@ class Okrag(Ksztalt):
         dy = py - self.y
 
         return dx**2 + dy**2 <= self.promien**2
+
+
+    def obwiednia(self):
+        return (self.x - self.promien, self.y - self.promien, self.x + self.promien, self.y + self.promien)
